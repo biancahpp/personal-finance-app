@@ -47,7 +47,13 @@ export default {
       100: "8px",
       50: "4px",
     },
-    extend: {},
+
+    extend: {
+      screens: {
+        xl: "1440px",
+        // => @media (min-width: 1440px) { ... }
+      },
+    },
   },
   plugins: [],
 };
