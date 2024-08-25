@@ -35,6 +35,7 @@ export default {
         orange: "#BE6C49",
       },
       white: "#FFFFFF",
+      transparent: "transparent",
     },
     fontFamily: {
       sans: ["Public", "sans-serif"],
