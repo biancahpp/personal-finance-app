@@ -1,18 +1,53 @@
 ---
-interface Props {
-	title: string;
-	body: string;
-	href: string;
-}
+import { Image } from 'astro:assets';
+import FullLogo from '../images/logo-large.svg';
+import IconMinimizeMenu from '../images/icon-minimize-menu.svg';
+import IconBudgets from '../images/icon-nav-budgets.svg';
+import IconOverview from '../images/icon-nav-overview.svg';
+import IconTransactions from '../images/icon-nav-transactions.svg';
+import IconPots from '../images/icon-nav-pots.svg';
+import IconRecurringBills from '../images/icon-nav-recurring-bills.svg';
 
-// const { href, title, body } = Astro.props;
+const itemSpacing = "flex py-200 px-400 min-w-64"
+const itemMargin = "ml-200"
 
 ---
 
-<Layout title="Welcome to Personal Finance App.">
-	
-</Layout>
-
-<style>
-	
-</style>
+<aside class="sticky top-0">
+    <nav class="bg-grey-900 h-screen rounded-r-lg text-grey-300 flex flex-col justify-between text-preset-3">
+        <div>
+            <div class="py-500 px-400">
+                <Image src={FullLogo} alt="Finance logo" />
+            </div>
+            <ul class="pt-300 pr-300 flex flex-col">
+                <a class={itemSpacing} href="/">
+                    <Image src={IconOverview} alt="" />
+                    <p class={itemMargin}>Overview</p>
+                    
+                </a>
+                <a class={itemSpacing} href="/transactions">
+                    <Image src={IconTransactions} alt="" />
+                    <p class={itemMargin}>Transactions</p>
+                </a>
+                <a class={itemSpacing} href="/budgets">
+                    <Image src={IconBudgets} alt="" />
+                    <p class={itemMargin}>Budgets</p>
+                </a>
+                <a class={itemSpacing} href="/pots">
+                    <Image src={IconPots} alt="" />
+                    <p class={itemMargin}>Pots</p>
+                </a>
+                <a class={itemSpacing} href="/recurring-bills">
+                    <Image src={IconRecurringBills} alt="" />
+                    <p class={itemMargin}>Recurring bills</p>
+                </a>
+            </ul>
+        </div>
+        <div class="py-300">
+            <button class={itemSpacing}>
+                <Image src={IconMinimizeMenu} alt="" />
+                <p class={itemMargin}>Minimize Menu</p>
+            </button>
+        </div>
+    </nav>
+</aside>
