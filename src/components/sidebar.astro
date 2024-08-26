@@ -3,11 +3,6 @@ import { Image } from 'astro:assets';
 import { twMerge } from 'tailwind-merge';
 import { Icon } from 'astro-icon/components';
 import FullLogo from '../icons/logo-large.svg';
-import IconMinimizeMenu from '../icons/icon-minimize-menu.svg';
-import IconBudgets from '../icons/icon-nav-budgets.svg';
-import IconTransactions from '../icons/icon-nav-transactions.svg';
-import IconPots from '../icons/icon-nav-pots.svg';
-import IconRecurringBills from '../icons/icon-nav-recurring-bills.svg';
 
 interface NavItem {
     href: string;
@@ -23,7 +18,7 @@ const navItems: NavItem[] = [
     {
         href: '/transactions',
         label: 'Transactions',
-        icon: 'icon-nav-transactions'	
+        icon: 'icon-nav-transactions'
     },
     {
         href: '/budgets',
@@ -61,8 +56,7 @@ const isActive = (href: string) => currentPath === href ? 'bg-beige-100 text-gre
                 {navItems.map(item => (
                     <li class="flex items-center">
                         <a class={twMerge(itemSpacing, isActive(item.href))} href={item.href}>
-                            {/* TODO: Fix fill for Icons */}
-                            <Icon name={item.icon} size="24" class="text-secondary-green fill-current" />
+                            <Icon name={item.icon} size="24" class={isActive(item.href) && "text-secondary-green fill-current [&>symbol>path]:fill-current"} />
                             <p class={itemMargin}>{item.label}</p>
                         </a>
                     </li>
@@ -71,7 +65,7 @@ const isActive = (href: string) => currentPath === href ? 'bg-beige-100 text-gre
         </div>
         <div class="py-300">
             <button class={itemSpacing}>
-                <Image src={IconMinimizeMenu} alt="" />
+                <Icon name="icon-minimize-menu" size="24 " />
                 <p class={itemMargin}>Minimize Menu</p>
             </button>
         </div>
