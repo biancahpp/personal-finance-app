@@ -38,7 +38,7 @@ const navItems: NavItem[] = [
 ]
 
 const navItemClasses =
-  'flex rounded-t-md border-b-4 border-transparent px-200 pb-150 pt-100 md:flex md:min-w-28 md:flex-col md:items-center lg:min-w-64 lg:rounded-r-md lg:border-l-4 lg:px-400 lg:py-200'
+  'flex rounded-t-md border-b-4 border-transparent px-200 pb-150 pt-100 md:flex md:min-w-28 md:flex-col md:items-center lg:min-w-64 lg:flex-row lg:rounded-l-none lg:rounded-r-md lg:border-b-0 lg:border-l-4 lg:px-400 lg:py-200'
 const labelClasses = 'hidden md:mt-1 md:inline-block lg:ml-200 lg:mt-0'
 
 const currentPath = Astro.url.pathname
@@ -51,14 +51,14 @@ const isActive = (href: string) =>
 
 <aside>
   <nav
-    class='bg-grey-900 text-grey-300 text-preset-3 md:text-preset-5-bold lg:flex lg:h-screen lg:flex-col lg:justify-between lg:rounded-r-lg'
+    class='bg-grey-900 text-grey-300 text-preset-5-bold lg:flex lg:h-screen lg:flex-col lg:justify-between lg:rounded-r-lg lg:text-preset-3'
   >
     <div>
       <div class='hidden px-400 py-500 lg:block'>
         <Image src={FullLogo} alt='Finance logo' />
       </div>
       <ul
-        class='flex justify-between px-200 pt-100 md:px-500 lg:flex-col lg:pr-300 lg:pt-300'
+        class='flex justify-between px-200 pt-100 md:px-500 lg:flex-col lg:pl-0 lg:pr-300 lg:pt-300'
       >
         {
           navItems.map((item) => (
