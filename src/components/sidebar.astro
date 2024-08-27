@@ -1,73 +1,92 @@
 ---
-import { Image } from 'astro:assets';
-import { twMerge } from 'tailwind-merge';
-import { Icon } from 'astro-icon/components';
-import FullLogo from '../icons/logo-large.svg';
+import { Image } from 'astro:assets'
+import { twMerge } from 'tailwind-merge'
+import { Icon } from 'astro-icon/components'
+import FullLogo from '../icons/logo-large.svg'
 
 interface NavItem {
-    href: string;
-    label: string;
-    icon: string;
+  href: string
+  label: string
+  icon: string
 }
 const navItems: NavItem[] = [
-    {
-        href: '/',
-        label: 'Overview',
-        icon: 'icon-nav-overview'
-    },
-    {
-        href: '/transactions',
-        label: 'Transactions',
-        icon: 'icon-nav-transactions'
-    },
-    {
-        href: '/budgets',
-        label: 'Budgets',
-        icon: 'icon-nav-budgets'
-    },
-    {
-        href: '/pots',
-        label: 'Pots',
-        icon: 'icon-nav-pots'
-    },
-    {
-        href: '/recurring-bills',
-        label: 'Recurring bills',
-        icon: 'icon-nav-recurring-bills'
-    },
+  {
+    href: '/',
+    label: 'Overview',
+    icon: 'icon-nav-overview'
+  },
+  {
+    href: '/transactions',
+    label: 'Transactions',
+    icon: 'icon-nav-transactions'
+  },
+  {
+    href: '/budgets',
+    label: 'Budgets',
+    icon: 'icon-nav-budgets'
+  },
+  {
+    href: '/pots',
+    label: 'Pots',
+    icon: 'icon-nav-pots'
+  },
+  {
+    href: '/recurring-bills',
+    label: 'Recurring bills',
+    icon: 'icon-nav-recurring-bills'
+  }
 ]
 
-const itemSpacing = "flex py-200 px-400 min-w-64 rounded-r-md border-l-4 border-transparent"
-const itemMargin = "ml-200"
+const navItemClasses =
+  'flex rounded-t-md pt-100 pb-150 px-200 lg:py-200 lg:px-400 lg:min-w-64 lg:rounded-r-md border-b-4 lg:border-l-4 border-transparent md:flex md:flex-col md:items-center md:min-w-28'
+const labelClasses = 'lg:ml-200 hidden md:inline-block md:mt-1 lg:mt-0'
 
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname
 
-const isActive = (href: string) => currentPath === href ? 'bg-beige-100 text-grey-900 border-secondary-green' : '';
-
+const isActive = (href: string) =>
+  currentPath === href
+    ? 'bg-beige-100 text-grey-900 border-secondary-green'
+    : ''
 ---
 
-<aside class="sticky top-0">
-    <nav class="bg-grey-900 h-screen rounded-r-lg text-grey-300 flex flex-col justify-between text-preset-3">
-        <div>
-            <div class="py-500 px-400">
-                <Image src={FullLogo} alt="Finance logo" />
-            </div>
-            <ul class="pt-300 pr-300 flex flex-col">
-                {navItems.map(item => (
-                    <li class="flex items-center">
-                        <a class={twMerge(itemSpacing, isActive(item.href))} href={item.href}>
-                            <Icon name={item.icon} size="24" class={isActive(item.href) && "text-secondary-green fill-current [&>symbol>path]:fill-current"} />
-                            <p class={itemMargin}>{item.label}</p>
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </div>
-        <div class="py-300">
-            <button class={itemSpacing}>
-                <Icon name="icon-minimize-menu" size="24 " />
-                <p class={itemMargin}>Minimize Menu</p>
-            </button>
-        </div>
-    </nav>
+<aside class=''>
+  <nav
+    class='bg-grey-900 lg:h-screen lg:rounded-r-lg text-grey-300 lg:flex lg:flex-col lg:justify-between text-preset-3 md:text-preset-5-bold'
+  >
+    <div>
+      <div class='hidden py-500 px-400 lg:block'>
+        <Image src={FullLogo} alt='Finance logo' />
+      </div>
+      <ul
+        class='pt-100 px-200 md:px-500 lg:pt-300 lg:pr-300 flex justify-between lg:flex-col'
+      >
+        {
+          navItems.map((item) => (
+            <li>
+              <a
+                class={twMerge(navItemClasses, isActive(item.href))}
+                href={item.href}
+              >
+                <Icon
+                  name={item.icon}
+                  size='24'
+                  class={
+                    isActive(item.href) &&
+                    'text-secondary-green fill-current [&>symbol>path]:fill-current'
+                  }
+                />
+                <p class={labelClasses}>{item.label}</p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class='hidden py-300 lg:block'>
+      <button class={navItemClasses}>
+        <Icon name='icon-minimize-menu' size='24 ' />
+        <p class={labelClasses}>Minimize Menu</p>
+      </button>
+    </div>
+  </nav>
 </aside>
