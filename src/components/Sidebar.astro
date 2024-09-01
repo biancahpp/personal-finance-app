@@ -42,13 +42,12 @@ const navItemClasses =
 const labelClasses = 'hidden md:mt-1 md:inline-block lg:ml-200 lg:mt-0'
 
 const currentPath = Astro.url.pathname
+const base = import.meta.env.BASE_URL
 
-const isActive = (href: string) => {
-  console.log({ currentPath, href })
-  return currentPath === `/personal-finance-app${href}`
+const isActive = (href: string) =>
+  currentPath === `${base}${href}`
     ? 'border-secondary-green bg-beige-100 text-grey-900'
     : ''
-}
 ---
 
 <aside>
@@ -67,7 +66,7 @@ const isActive = (href: string) => {
             <li>
               <a
                 class={twMerge(navItemClasses, isActive(item.href))}
-                href={`/personal-finance-app${item.href}`}
+                href={`${base}${item.href}`}
               >
                 <Icon
                   name={item.icon}
