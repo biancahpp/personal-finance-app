@@ -65,7 +65,7 @@ const isActive = (href: string) =>
             <li>
               <a
                 class={twMerge(navItemClasses, isActive(item.href))}
-                href={item.href}
+                href={`/personal-finance-app/${item.href}`}
               >
                 <Icon
                   name={item.icon}
