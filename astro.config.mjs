@@ -6,5 +6,9 @@ import icon from 'astro-icon'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://biancahpp.github.io',
-  integrations: [tailwind(), icon()]
+  integrations: [tailwind(), icon()],
+  base: '/personal-finance-app',
+  build: {
+    assets: '_astro'
+  }
 })
