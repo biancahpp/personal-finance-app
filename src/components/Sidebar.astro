@@ -11,7 +11,7 @@ interface NavItem {
 }
 const navItems: NavItem[] = [
   {
-    href: '/',
+    href: '',
     label: 'Overview',
     icon: 'icon-nav-overview'
   },
@@ -44,7 +44,7 @@ const labelClasses = 'hidden md:mt-1 md:inline-block lg:ml-200 lg:mt-0'
 const currentPath = Astro.url.pathname
 
 const isActive = (href: string) =>
-  currentPath === href
+  currentPath === `/personal-finance-app/${href}`
     ? 'border-secondary-green bg-beige-100 text-grey-900'
     : ''
 ---
