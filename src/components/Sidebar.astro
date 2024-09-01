@@ -44,15 +44,11 @@ const labelClasses = 'hidden md:mt-1 md:inline-block lg:ml-200 lg:mt-0'
 const currentPath = Astro.url.pathname
 const base = import.meta.env.BASE_URL
 
-console.log('BASE_URL:', base, 'CURRENT_PATH:', currentPath)
-
-const isActive = (href: string) => {
-  console.log('BASE_URL:', base, 'HREF:', href, 'CURRENT_PATH:', currentPath)
-
-  return currentPath === `${base}${href}`
-    ? 'border-secondary-green bg-beige-100 text-grey-900'
-    : ''
-}
+// const isActive = (href: string) =>
+//   currentPath === `${base}${href}`
+//     ? 'border-secondary-green bg-beige-100 text-grey-900'
+//     : ''
+const isActive = (href: string) => currentPath === `${base}${href}`
 ---
 
 <aside>
@@ -69,17 +65,24 @@ const isActive = (href: string) => {
         {
           navItems.map((item) => (
             <li>
+              {console.log(isActive(item.href))}
               <a
-                class={twMerge(navItemClasses, isActive(item.href))}
+                class={twMerge(
+                  navItemClasses,
+                  isActive(item.href)
+                    ? 'border-secondary-green bg-beige-100 text-grey-900'
+                    : ''
+                )}
                 href={`${base}${item.href}`}
               >
                 <Icon
                   name={item.icon}
                   size='24'
-                  class={
-                    isActive(item.href) &&
-                    'fill-current text-secondary-green [&>symbol>path]:fill-current'
-                  }
+                  class={twMerge(
+                    isActive(item.href)
+                      ? 'fill-current text-secondary-green [&>symbol>path]:fill-current'
+                      : ''
+                  )}
                 />
                 <p class={labelClasses}>{item.label}</p>
               </a>
