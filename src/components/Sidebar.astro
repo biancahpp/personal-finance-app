@@ -40,14 +40,6 @@ const navItems: NavItem[] = [
 const navItemClasses =
   'flex rounded-t-md border-b-4 border-transparent px-200 pb-150 pt-100 md:flex md:min-w-28 md:flex-col md:items-center lg:min-w-64 lg:flex-row lg:rounded-l-none lg:rounded-r-md lg:border-b-0 lg:border-l-4 lg:px-400 lg:py-200'
 const labelClasses = 'hidden md:mt-1 md:inline-block lg:ml-200 lg:mt-0'
-
-const currentPath = Astro.url.pathname
-// const base = import.meta.env.BASE_URL
-
-const isActive = (href: string) =>
-  currentPath === `${href}`
-    ? 'border-secondary-green bg-beige-100 text-grey-900'
-    : ''
 ---
 
 <aside>
@@ -65,17 +57,11 @@ const isActive = (href: string) =>
           navItems.map((item) => (
             <li>
               <a
-                class={twMerge(navItemClasses, isActive(item.href))}
-                href={`${item.href}`}
+                class={twMerge(navItemClasses, 'nav-item')}
+                href={item.href}
+                data-href={item.href}
               >
-                <Icon
-                  name={item.icon}
-                  size='24'
-                  class={
-                    isActive(item.href) &&
-                    'fill-current text-secondary-green [&>symbol>path]:fill-current'
-                  }
-                />
+                <Icon name={item.icon} size='24' class='nav-icon' />
                 <p class={labelClasses}>{item.label}</p>
               </a>
             </li>
@@ -91,3 +77,49 @@ const isActive = (href: string) =>
     </div>
   </nav>
 </aside>
+
+<script>
+  function updateActiveNavItem() {
+    const navItems = document.querySelectorAll('.nav-item')
+    const currentPath = window.location.pathname
+
+    navItems.forEach((item) => {
+      const itemHref = item.getAttribute('data-href')
+      if (currentPath === itemHref) {
+        item.classList.add(
+          'border-secondary-green',
+          'bg-beige-100',
+          'text-grey-900'
+        )
+        const navIcon = item.querySelector('.nav-icon')
+        if (navIcon) {
+          navIcon.classList.add(
+            'fill-current',
+            'text-secondary-green',
+            '[&>symbol>path]:fill-current'
+          )
+        }
+      } else {
+        item.classList.remove(
+          'border-secondary-green',
+          'bg-beige-100',
+          'text-grey-900'
+        )
+        const navIcon = item.querySelector('.nav-icon')
+        if (navIcon) {
+          navIcon.classList.remove(
+            'fill-current',
+            'text-secondary-green',
+            '[&>symbol>path]:fill-current'
+          )
+        }
+      }
+    })
+  }
+
+  // Update active item on page load
+  updateActiveNavItem()
+
+  // Update active item when the page changes (for client-side navigation)
+  document.addEventListener('astro:page-load', updateActiveNavItem)
+</script>

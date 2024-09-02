@@ -6,10 +6,12 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "build-and-serve": "astro build && npm run serve",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\"",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "serve": "node server.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
