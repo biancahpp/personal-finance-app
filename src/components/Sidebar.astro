@@ -85,7 +85,7 @@ const labelClasses = 'hidden md:mt-1 md:inline-block lg:ml-200 lg:mt-0'
 
     navItems.forEach((item) => {
       const itemHref = item.getAttribute('data-href')
-      if (currentPath === itemHref) {
+      if (currentPath === itemHref || currentPath === `${itemHref}/`) {
         item.classList.add(
           'border-secondary-green',
           'bg-beige-100',
